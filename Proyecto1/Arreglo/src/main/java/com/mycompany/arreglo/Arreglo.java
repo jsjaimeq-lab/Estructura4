@@ -10,7 +10,5 @@ package com.mycompany.arreglo;
  */
 public class Arreglo {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+    
 }
