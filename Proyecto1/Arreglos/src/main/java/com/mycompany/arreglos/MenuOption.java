@@ -33,10 +33,10 @@ public class MenuOption extends javax.swing.JFrame {
     private void initComponents() {
 
         Create = new javax.swing.JButton();
+        t = new javax.swing.JTextField();
         View = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
-        t = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -44,22 +44,37 @@ public class MenuOption extends javax.swing.JFrame {
         Create.setEnabled(false);
         Create.addActionListener(this::CreateActionPerformed);
 
-        View.setText("View");
-
-        Update.setText("Update");
-
-        Delete.setText("Delete");
-
         t.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tKeyReleased(evt);
             }
         });
 
+        View.setText("View");
+        View.setEnabled(false);
+        View.addActionListener(this::ViewActionPerformed);
+        View.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                ViewKeyReleased(evt);
+            }
+        });
+
+        Update.setText("Update");
+        Update.setEnabled(false);
+        Update.addActionListener(this::UpdateActionPerformed);
+
+        Delete.setText("Delete");
+        Delete.setEnabled(false);
+        Delete.addActionListener(this::DeleteActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(169, Short.MAX_VALUE)
+                .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
             .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,25 +83,21 @@ public class MenuOption extends javax.swing.JFrame {
                     .addComponent(View)
                     .addComponent(Create))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(Create)
-                .addGap(36, 36, 36)
+                .addGap(41, 41, 41)
                 .addComponent(View)
-                .addGap(5, 5, 5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Update)
-                .addGap(37, 37, 37)
+                .addGap(36, 36, 36)
                 .addComponent(Delete)
-                .addContainerGap(40, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
@@ -95,17 +106,47 @@ public class MenuOption extends javax.swing.JFrame {
     private void CreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateActionPerformed
         
         objArray.createArray(Integer.parseInt(t.getText()));
+        if(objArray.names != null){
+            View.setEnabled(true);
+            Update.setEnabled(true);
+            Delete.setEnabled(true);
+        }
     }//GEN-LAST:event_CreateActionPerformed
 
     private void tKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tKeyReleased
-        if(t.getText().equals(" ")){
-            JOptionPane.showMessageDialog(null, " !Error Up¡");
+
+        if(t.getText().equals("")){
+            JOptionPane.showMessageDialog(null, " !Error Up¡ rellena el campo");
             Create.setEnabled(false);
         }else{
             Create.setEnabled(true);
+            try{
+                int n = Integer.parseInt(t.getText());
+            }catch(NumberFormatException e){
+                Create.setEnabled(false);
+                JOptionPane.showMessageDialog(null, " campo rellenado incorrectamente");
+            }
         }
     }//GEN-LAST:event_tKeyReleased
 
+    
+    private void ViewKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ViewKeyReleased
+         
+    }//GEN-LAST:event_ViewKeyReleased
+
+    private void ViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ViewActionPerformed
+        objArray.viewArray();
+    }//GEN-LAST:event_ViewActionPerformed
+
+    private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
+        objArray.updateArray(Integer.parseInt(JOptionPane.showInputDialog(" indice ")),JOptionPane.showInputDialog(" name "));
+    }//GEN-LAST:event_UpdateActionPerformed
+
+    private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
+        objArray.deleteArray(Integer.parseInt(JOptionPane.showInputDialog(" indice ")));
+    }//GEN-LAST:event_DeleteActionPerformed
+
+    
     /**
      * @param args the command line arguments
      */
