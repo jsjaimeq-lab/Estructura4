@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class MenuOption extends javax.swing.JFrame {
     
     Arreglos objArray = new Arreglos();
+    Matriz objMatriz = new Matriz();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -37,6 +38,7 @@ public class MenuOption extends javax.swing.JFrame {
         View = new javax.swing.JButton();
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
+        CreateMatriz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -67,22 +69,25 @@ public class MenuOption extends javax.swing.JFrame {
         Delete.setEnabled(false);
         Delete.addActionListener(this::DeleteActionPerformed);
 
+        CreateMatriz.setText("CreateMatriz");
+        CreateMatriz.addActionListener(this::CreateMatrizActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(169, Short.MAX_VALUE)
-                .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
-            .addGroup(layout.createSequentialGroup()
                 .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Delete)
                     .addComponent(Update)
                     .addComponent(View)
                     .addComponent(Create))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(CreateMatriz)
+                    .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -96,7 +101,9 @@ public class MenuOption extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Update)
                 .addGap(36, 36, 36)
-                .addComponent(Delete)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Delete)
+                    .addComponent(CreateMatriz))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
 
@@ -160,6 +167,13 @@ public class MenuOption extends javax.swing.JFrame {
         
     }//GEN-LAST:event_DeleteActionPerformed
 
+    private void CreateMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CreateMatrizActionPerformed
+        
+        String fila = JOptionPane.showInputDialog(" ingrese el numero fila ");
+        String col = JOptionPane.showInputDialog(" ingrese el numero columna");
+        objMatriz.crearMatriz(Integer.parseInt(fila),Integer.parseInt(col));
+    }//GEN-LAST:event_CreateMatrizActionPerformed
+
     
     /**
      * @param args the command line arguments
@@ -188,6 +202,7 @@ public class MenuOption extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Create;
+    private javax.swing.JButton CreateMatriz;
     private javax.swing.JButton Delete;
     private javax.swing.JButton Update;
     private javax.swing.JButton View;
