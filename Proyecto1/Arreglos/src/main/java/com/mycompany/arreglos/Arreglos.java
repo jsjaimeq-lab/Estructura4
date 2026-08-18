@@ -33,7 +33,7 @@ public class Arreglos {
             if(!names[x].equals("") ){
                 resultado = resultado +"\n"+(x+1)+"   "+ names[x];
             }else{
-                resultado = resultado +"\n"+" vacio ";
+                resultado = resultado +"\n"+(x+1)+" vacio ";
             }
         }
         
@@ -42,14 +42,24 @@ public class Arreglos {
         
     }
     
-    public void updateArray(int indice,String name){
+    public void updateArray(int index,String name){
         
-        names[indice-1] = name;
+        names[index-1] = name;
     }
     
-    public void deleteArray(int indice){
-        names[indice-1] = "";
+    public void deleteArray(int index){
+        names[index-1] = "";
     }
     
-    
+    public boolean verifyIndex(String index){
+        int indexEntero = Integer.parseInt(index);
+        int n = names.length;
+        
+        if(indexEntero > n){
+            JOptionPane.showMessageDialog(null, " index fuera de rango,vuelve a intentarlo");
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

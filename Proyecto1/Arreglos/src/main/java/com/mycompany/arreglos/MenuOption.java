@@ -139,11 +139,25 @@ public class MenuOption extends javax.swing.JFrame {
     }//GEN-LAST:event_ViewActionPerformed
 
     private void UpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UpdateActionPerformed
-        objArray.updateArray(Integer.parseInt(JOptionPane.showInputDialog(" indice ")),JOptionPane.showInputDialog(" name "));
+        
+        String index = JOptionPane.showInputDialog(" index ");
+        String name = JOptionPane.showInputDialog(" name ");
+       
+        if(objArray.verifyIndex(index)){
+            objArray.updateArray(Integer.parseInt(index), name);
+        }
+        
     }//GEN-LAST:event_UpdateActionPerformed
 
     private void DeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteActionPerformed
-        objArray.deleteArray(Integer.parseInt(JOptionPane.showInputDialog(" indice ")));
+       
+        String index = JOptionPane.showInputDialog(" index ");
+        
+        if(objArray.verifyIndex(index)){
+            objArray.deleteArray(Integer.parseInt(index));
+        }
+        
+        
     }//GEN-LAST:event_DeleteActionPerformed
 
     
