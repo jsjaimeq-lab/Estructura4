@@ -39,6 +39,10 @@ public class MenuOption extends javax.swing.JFrame {
         Update = new javax.swing.JButton();
         Delete = new javax.swing.JButton();
         CreateMatriz = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        ConsultarMatriz = new javax.swing.JButton();
+        EliminarPosicionMatriz = new javax.swing.JButton();
+        ActualizarMatriz = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +76,20 @@ public class MenuOption extends javax.swing.JFrame {
         CreateMatriz.setText("CreateMatriz");
         CreateMatriz.addActionListener(this::CreateMatrizActionPerformed);
 
+        jLabel1.setText("Tamaño Arreglo");
+
+        ConsultarMatriz.setText("ConsultarMatriz");
+        ConsultarMatriz.setEnabled(false);
+        ConsultarMatriz.addActionListener(this::ConsultarMatrizActionPerformed);
+
+        EliminarPosicionMatriz.setText("EliminarPosicionMatriz");
+        EliminarPosicionMatriz.setEnabled(false);
+        EliminarPosicionMatriz.addActionListener(this::EliminarPosicionMatrizActionPerformed);
+
+        ActualizarMatriz.setText("ActualizarMatriz");
+        ActualizarMatriz.setEnabled(false);
+        ActualizarMatriz.addActionListener(this::ActualizarMatrizActionPerformed);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -83,28 +101,51 @@ public class MenuOption extends javax.swing.JFrame {
                     .addComponent(Update)
                     .addComponent(View)
                     .addComponent(Create))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(CreateMatriz)
-                    .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(EliminarPosicionMatriz)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(ActualizarMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, 151, Short.MAX_VALUE)
+                                .addComponent(ConsultarMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(CreateMatriz, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(74, 74, 74))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(Create)
-                .addGap(41, 41, 41)
-                .addComponent(View)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Update)
-                .addGap(36, 36, 36)
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Create)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(t, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(View)
+                        .addGap(29, 29, 29))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(EliminarPosicionMatriz)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Delete)
-                    .addComponent(CreateMatriz))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addComponent(ConsultarMatriz)
+                    .addComponent(Update))
+                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(ActualizarMatriz)
+                    .addComponent(Delete))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(CreateMatriz)
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         pack();
@@ -171,8 +212,26 @@ public class MenuOption extends javax.swing.JFrame {
         
         String fila = JOptionPane.showInputDialog(" ingrese el numero fila ");
         String col = JOptionPane.showInputDialog(" ingrese el numero columna");
-        objMatriz.crearMatriz(Integer.parseInt(fila),Integer.parseInt(col));
+        objMatriz.crearMatriz(fila,col);
+        if(objMatriz.datos != null){
+            ActualizarMatriz.setEnabled(true);
+            ConsultarMatriz.setEnabled(true);
+            EliminarPosicionMatriz.setEnabled(true);
+        }
     }//GEN-LAST:event_CreateMatrizActionPerformed
+
+    private void ActualizarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ActualizarMatrizActionPerformed
+        objMatriz.actualizarMatriz(JOptionPane.showInputDialog(" ingrese valor fila"),JOptionPane.showInputDialog(" ingrese valor columna"),JOptionPane.showInputDialog(" ingrese valor a cambiar"));
+    }//GEN-LAST:event_ActualizarMatrizActionPerformed
+
+    private void ConsultarMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConsultarMatrizActionPerformed
+        
+        objMatriz.consultarMatriz(JOptionPane.showInputDialog(" ingrese el valor a consultar "));
+    }//GEN-LAST:event_ConsultarMatrizActionPerformed
+
+    private void EliminarPosicionMatrizActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPosicionMatrizActionPerformed
+        objMatriz.eliminarPosicion(JOptionPane.showInputDialog(" ingrese la fila "),JOptionPane.showInputDialog(" ingrese la columna "));
+    }//GEN-LAST:event_EliminarPosicionMatrizActionPerformed
 
     
     /**
@@ -201,11 +260,15 @@ public class MenuOption extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ActualizarMatriz;
+    private javax.swing.JButton ConsultarMatriz;
     private javax.swing.JButton Create;
     private javax.swing.JButton CreateMatriz;
     private javax.swing.JButton Delete;
+    private javax.swing.JButton EliminarPosicionMatriz;
     private javax.swing.JButton Update;
     private javax.swing.JButton View;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField t;
     // End of variables declaration//GEN-END:variables
 }
