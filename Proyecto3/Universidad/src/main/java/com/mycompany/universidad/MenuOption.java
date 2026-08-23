@@ -4,11 +4,14 @@
  */
 package com.mycompany.universidad;
 
+import javax.swing.JOptionPane;
 /**
  *
  * @author juan
  */
 public class MenuOption extends javax.swing.JFrame {
+    
+    public Arreglos arreglo = new Arreglos();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -28,44 +31,79 @@ public class MenuOption extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BusesRegister = new javax.swing.JButton();
+        RegisterDayWeekWork = new javax.swing.JButton();
+        AnalysisWeek = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jButton1.setText("RegisterBuses");
+        BusesRegister.setText("Buses Register ");
+        BusesRegister.addActionListener(this::BusesRegisterActionPerformed);
 
-        jButton2.setText("DayWeekWork");
+        RegisterDayWeekWork.setText("Record of day worked and  bus used  ");
+        RegisterDayWeekWork.setEnabled(false);
+        RegisterDayWeekWork.addActionListener(this::RegisterDayWeekWorkActionPerformed);
 
-        jButton3.setText("AnalysisWeek");
+        AnalysisWeek.setText("Analysis of the Week");
+        AnalysisWeek.setEnabled(false);
+        AnalysisWeek.addActionListener(this::AnalysisWeekActionPerformed);
+
+        jLabel1.setText("Menu of Options ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(BusesRegister, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(RegisterDayWeekWork, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(AnalysisWeek, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addComponent(jLabel1)))
+                .addContainerGap(60, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(jButton1)
+                .addGap(30, 30, 30)
+                .addComponent(jLabel1)
+                .addGap(35, 35, 35)
+                .addComponent(BusesRegister)
                 .addGap(18, 18, 18)
-                .addComponent(jButton2)
+                .addComponent(RegisterDayWeekWork)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(AnalysisWeek)
                 .addContainerGap(93, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void RegisterDayWeekWorkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDayWeekWorkActionPerformed
+        RegisterDayWeekWork window = new RegisterDayWeekWork();
+        window.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_RegisterDayWeekWorkActionPerformed
+
+    private void BusesRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusesRegisterActionPerformed
+        int numberBuses = Integer.parseInt(JOptionPane.showInputDialog(" total buses to be registered "));
+        arreglo.createArregloWeek(numberBuses);
+        this.dispose();
+        RegisterBuses window = new RegisterBuses();
+        window.setVisible(true);  
+    }//GEN-LAST:event_BusesRegisterActionPerformed
+
+    private void AnalysisWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalysisWeekActionPerformed
+        AnalysisWeek window = new AnalysisWeek();
+        window.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AnalysisWeekActionPerformed
 
     /**
      * @param args the command line arguments
@@ -93,8 +131,9 @@ public class MenuOption extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton AnalysisWeek;
+    private javax.swing.JButton BusesRegister;
+    public javax.swing.JButton RegisterDayWeekWork;
+    private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }
