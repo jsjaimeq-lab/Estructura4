@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  */
 public class MenuOption extends javax.swing.JFrame {
     
-    public Arreglos arreglo = new Arreglos();
+    public static Arreglos arreglo = new Arreglos();
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -93,7 +93,7 @@ public class MenuOption extends javax.swing.JFrame {
 
     private void BusesRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusesRegisterActionPerformed
         int numberBuses = Integer.parseInt(JOptionPane.showInputDialog(" total buses to be registered "));
-        arreglo.createArregloWeek(numberBuses);
+        MenuOption.arreglo.createArregloWeek(numberBuses);
         this.dispose();
         RegisterBuses window = new RegisterBuses();
         window.setVisible(true);  

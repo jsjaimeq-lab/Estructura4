@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class RegisterBuses extends javax.swing.JFrame {
     
     MenuOption windowMenuOption = new MenuOption();
-    
+    Buses bus;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegisterBuses.class.getName());
 
@@ -154,17 +154,23 @@ public class RegisterBuses extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
+        RegisterBuses windowRegisterBuses = new RegisterBuses();
+        int x = MenuOption.arreglo.arregloBus.length;
+        JOptionPane.showMessageDialog(null,MenuOption.arreglo.i);
         
-        int x = windowMenuOption.arreglo.arregloBus.length;
+        if(MenuOption.arreglo.i < x-1){
+            bus = new Buses(nameDrive.getText(),plate.getText(),hour.getText(),Integer.parseInt(age.getText()));
+            MenuOption.arreglo.arregloBus[MenuOption.arreglo.i] = bus;
+            JOptionPane.showMessageDialog(null, MenuOption.arreglo.i);
+            MenuOption.arreglo.i = MenuOption.arreglo.i+1;
+            this.dispose();
+            windowRegisterBuses.setVisible(true);
+        }else{
+            windowMenuOption.RegisterDayWeekWork.setEnabled(true);
+            this.dispose();
+            windowMenuOption.setVisible(true); 
+        }
         
-        JOptionPane.showMessageDialog(null,x);
-        /*
-        bus = new Buses(nameDrive.getText(),plate.getText(),hour.getText(),Integer.parseInt(age.getText()));
-        windowMenuOption.arreglo.arregloBus[0] = bus;
-        
-        windowMenuOption.RegisterDayWeekWork.setEnabled(true);
-        windowMenuOption.setVisible(true);
-        this.dispose();*/
     }//GEN-LAST:event_RegisterActionPerformed
 
     /**
@@ -193,7 +199,7 @@ public class RegisterBuses extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Register;
+    private static javax.swing.JButton Register;
     private javax.swing.JTextField age;
     private javax.swing.JButton cancel;
     private javax.swing.JTextField hour;
