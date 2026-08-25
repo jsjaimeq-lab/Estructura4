@@ -4,6 +4,8 @@
  */
 package com.mycompany.universidad;
 
+import javax.swing.JOptionPane;
+
 
 /**
  *
@@ -22,7 +24,15 @@ public class Arreglos {
         i = 0;
     }
     
-    public static void busLoading(){
-        
+    public static int[] totalStudentsDay(){
+        int[] dayTotal = new int[6]; 
+        int x = 0; 
+        while(x < 6){
+            for(int i = 0; i < Arreglos.arregloDayWeekPeople.length; i++){
+                dayTotal[x] = Arreglos.arregloDayWeekPeople[i][x];
+            }
+            x++;
+        }
+        return dayTotal;    
     }
 }

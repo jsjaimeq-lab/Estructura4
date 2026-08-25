@@ -40,10 +40,10 @@ public class AnalysisWeek extends javax.swing.JFrame {
         answer7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
+        answer3 = new javax.swing.JButton();
+        answer4 = new javax.swing.JButton();
+        answer5 = new javax.swing.JButton();
+        answer6 = new javax.swing.JButton();
         exit = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
 
@@ -71,17 +71,17 @@ public class AnalysisWeek extends javax.swing.JFrame {
         jButton3.setText("Answer");
         jButton3.addActionListener(this::jButton3ActionPerformed);
 
-        jButton4.setText("Answer");
-        jButton4.addActionListener(this::jButton4ActionPerformed);
+        answer3.setText("Answer");
+        answer3.addActionListener(this::answer3ActionPerformed);
 
-        jButton5.setText("Answer");
-        jButton5.addActionListener(this::jButton5ActionPerformed);
+        answer4.setText("Answer");
+        answer4.addActionListener(this::answer4ActionPerformed);
 
-        jButton6.setText("Answer");
-        jButton6.addActionListener(this::jButton6ActionPerformed);
+        answer5.setText("Answer");
+        answer5.addActionListener(this::answer5ActionPerformed);
 
-        jButton7.setText("Answer");
-        jButton7.addActionListener(this::jButton7ActionPerformed);
+        answer6.setText("Answer");
+        answer6.addActionListener(this::answer6ActionPerformed);
 
         exit.setText("Exit");
         exit.addActionListener(this::exitActionPerformed);
@@ -95,11 +95,11 @@ public class AnalysisWeek extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton7)
-                    .addComponent(jButton6)
-                    .addComponent(jButton5)
+                    .addComponent(answer6)
+                    .addComponent(answer5)
+                    .addComponent(answer4)
                     .addComponent(jLabel5)
-                    .addComponent(jButton4)
+                    .addComponent(answer3)
                     .addComponent(answer7)
                     .addComponent(jButton3)
                     .addComponent(jLabel3)
@@ -136,19 +136,19 @@ public class AnalysisWeek extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4)
+                .addComponent(answer3)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton5)
+                .addComponent(answer4)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton6)
+                .addComponent(answer5)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton7)
+                .addComponent(answer6)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -186,21 +186,73 @@ public class AnalysisWeek extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
+        int valuSaveSmaller = 0;
+        int indexDay = 0;
+        int[] dayTotal = Arreglos.totalStudentsDay();
+        for(int x = 0; x < dayTotal.length;x++ ){
+            if(valuSaveSmaller != 0){
+                if(dayTotal[x] < valuSaveSmaller){
+                    valuSaveSmaller = dayTotal[x];
+                    indexDay = x;
+                }
+            }else{
+                valuSaveSmaller = dayTotal[x];
+                indexDay = x;
+            }
+            
+        }
+        String answer = " ";
+        switch(indexDay){
+            case 0 -> answer = " Lunes ";
+            case 1 -> answer = " Martes ";
+            case 2 -> answer = " Miercoles ";
+            case 3 -> answer = " Jueves ";
+            case 4 -> answer = " Viernes ";
+            case 5 -> answer = " Sabado ";
+        }
+        
+        JOptionPane.showMessageDialog(null,answer);
+    }//GEN-LAST:event_answer3ActionPerformed
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
+    private void answer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer4ActionPerformed
+        int[] dayTotal = Arreglos.totalStudentsDay();
+        int suma = 0;
+        for(int x = 0; x < dayTotal.length; x++){
+            suma = suma +dayTotal[x];
+        }
+        JOptionPane.showMessageDialog(null," Total WeeK Students: "+suma);
+    }//GEN-LAST:event_answer4ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+    private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
+        int[] dayTotal = Arreglos.totalStudentsDay();
+        String answer = " lunes: "+dayTotal[0]+"\n"+" martes: "+dayTotal[1]+"\n"+" miercoles: "+dayTotal[2]+"\n"+" jueves: "+dayTotal[3]+"\n"+" viernes: "+dayTotal[4]+"\n"+" sabado: "+dayTotal[5];
+        JOptionPane.showMessageDialog(null,answer);
+                
+    }//GEN-LAST:event_answer5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
+    private void answer6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer6ActionPerformed
+        int valueSave = 0;
+        int indexSave = 0;
+        for(int x = 0; x < Arreglos.arregloBus.length; x++){
+            int suma = 0;
+            for(int i = 0; i < Arreglos.arregloDayWeekPeople[x].length; i ++){
+                suma = suma + Arreglos.arregloDayWeekPeople[x][i]; 
+            }
+            if(suma > valueSave){
+                valueSave = suma;
+                indexSave = x;
+            }
+        }
+        
+        if(valueSave == 0){
+            JOptionPane.showInternalMessageDialog(null, " no records ");
+        }else{
+            String answer = " Name Drive: "+Arreglos.arregloBus[indexSave].getNameDrive()+"\n"+" Plate: "+Arreglos.arregloBus[indexSave].getPlaca();
+            JOptionPane.showMessageDialog(null,answer);
+        }
+        
+    }//GEN-LAST:event_answer6ActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
         MenuOption window = new MenuOption();
@@ -234,14 +286,14 @@ public class AnalysisWeek extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton answer3;
+    private javax.swing.JButton answer4;
+    private javax.swing.JButton answer5;
+    private javax.swing.JButton answer6;
     private javax.swing.JButton answer7;
     private javax.swing.JButton exit;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
