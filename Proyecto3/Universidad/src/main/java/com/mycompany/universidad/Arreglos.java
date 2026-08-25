@@ -11,20 +11,18 @@ package com.mycompany.universidad;
  */
 public class Arreglos {
    
-    Buses bus = new Buses("juan","ctg","7 am",18);
-    private final int NUMBERDAYWEEK = 7; 
-    public Buses[] arregloBus = new Buses[0];
-    public int[][] arregloDayWeek = new int[0][0];
-    int i ;
+    private static final int NUMBERDAYWEEK = 6; 
+    public static Buses[] arregloBus ;
+    public static int[][] arregloDayWeekPeople;
+    public static int i ;
     
-    public void createArregloWeek(int f){
-        this.arregloBus = new Buses[f];
-        this.arregloBus[0] = bus;
-        this.arregloDayWeek = new int[f][NUMBERDAYWEEK];
-        this.i = 0;
+    public static void createArregloWeek(int f){
+        arregloBus = new Buses[f];
+        arregloDayWeekPeople = new int[f][NUMBERDAYWEEK];
+        i = 0;
     }
     
-    public int longArregloBus(){
-        return arregloBus.length;
+    public static void busLoading(){
+        
     }
 }

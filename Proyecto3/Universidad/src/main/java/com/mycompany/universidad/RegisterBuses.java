@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
 public class RegisterBuses extends javax.swing.JFrame {
     
     MenuOption windowMenuOption = new MenuOption();
-    Buses bus;
+    public static Buses bus;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RegisterBuses.class.getName());
 
@@ -21,6 +21,16 @@ public class RegisterBuses extends javax.swing.JFrame {
      */
     public RegisterBuses() {
         initComponents();
+        
+        Arreglos.i = Arreglos.i+1 ;
+        System.out.println( Arreglos.i);
+        if(Arreglos.arregloBus != null){
+            if(Arreglos.i == (Arreglos.arregloBus.length)){
+                this.dispose();
+                JOptionPane.showMessageDialog(null, " arreglo full");
+            }
+        }
+        
     }
 
     /**
@@ -154,23 +164,12 @@ public class RegisterBuses extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelActionPerformed
 
     private void RegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterActionPerformed
-        RegisterBuses windowRegisterBuses = new RegisterBuses();
-        int x = MenuOption.arreglo.arregloBus.length;
-        JOptionPane.showMessageDialog(null,MenuOption.arreglo.i);
+
         
-        if(MenuOption.arreglo.i < x-1){
-            bus = new Buses(nameDrive.getText(),plate.getText(),hour.getText(),Integer.parseInt(age.getText()));
-            MenuOption.arreglo.arregloBus[MenuOption.arreglo.i] = bus;
-            JOptionPane.showMessageDialog(null, MenuOption.arreglo.i);
-            MenuOption.arreglo.i = MenuOption.arreglo.i+1;
-            this.dispose();
-            windowRegisterBuses.setVisible(true);
-        }else{
-            windowMenuOption.RegisterDayWeekWork.setEnabled(true);
-            this.dispose();
-            windowMenuOption.setVisible(true); 
-        }
-        
+        bus = new Buses(nameDrive.getText(),plate.getText(),hour.getText(),Integer.parseInt(age.getText()));
+        Arreglos.arregloBus[Arreglos.i] = bus;
+        this.dispose();
+        windowMenuOption.setVisible(true);
     }//GEN-LAST:event_RegisterActionPerformed
 
     /**

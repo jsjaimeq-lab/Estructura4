@@ -55,6 +55,11 @@ public final class Buses {
     public void setEdad(int edad) {
         this.edad = edad;
     }
+
+    @Override
+    public String toString() {
+        return " NameDrive: "+nameDrive+" Age: "+edad+" Plate: "+placa+" Hour: "+hora;
+    }
     
     
 }

@@ -11,7 +11,8 @@ import javax.swing.JOptionPane;
  */
 public class MenuOption extends javax.swing.JFrame {
     
-    public static Arreglos arreglo = new Arreglos();
+    public static RegisterDayWeekWork windowRegisterDayWeekWork = new RegisterDayWeekWork();
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -19,9 +20,15 @@ public class MenuOption extends javax.swing.JFrame {
      * Creates new form MenuOption
      */
     public MenuOption() {
-        initComponents();
+        initComponents(); 
+        if(Arreglos.arregloBus != null){
+            RegisterDayWeekWork.setEnabled(true);
+            AnalysisWeek.setEnabled(true);
+        }
+        
     }
 
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -86,22 +93,52 @@ public class MenuOption extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterDayWeekWorkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDayWeekWorkActionPerformed
-        RegisterDayWeekWork window = new RegisterDayWeekWork();
-        window.setVisible(true);
+        if(Arreglos.i <= Arreglos.arregloBus.length ){
+            String textBus;
+            for(int x = 0; x < Arreglos.arregloBus.length; x++){
+                Buses bus = (Buses)Arreglos.arregloBus[x];
+                textBus = "Bus "+(x+1)+bus.toString();
+                MenuOption.windowRegisterDayWeekWork.busesAvailable.addItem(textBus);
+            }
+        }
+        windowRegisterDayWeekWork.setVisible(true);
         this.dispose();
+        
     }//GEN-LAST:event_RegisterDayWeekWorkActionPerformed
 
     private void BusesRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BusesRegisterActionPerformed
-        int numberBuses = Integer.parseInt(JOptionPane.showInputDialog(" total buses to be registered "));
-        MenuOption.arreglo.createArregloWeek(numberBuses);
-        this.dispose();
-        RegisterBuses window = new RegisterBuses();
-        window.setVisible(true);  
+        RegisterBuses windowRegisterBuses = new RegisterBuses();
+        if(Arreglos.arregloBus != null){
+            RegisterDayWeekWork.setEnabled(true);
+            AnalysisWeek.setEnabled(true);
+        }
+        if(Arreglos.arregloBus == null){
+            int numberBuses;
+            try{
+                 numberBuses = Integer.parseInt(JOptionPane.showInputDialog(" total buses to be registered "));
+            }catch(NumberFormatException e){
+                numberBuses = 0;
+            }
+            if(numberBuses != 0){
+                Arreglos.createArregloWeek(numberBuses);
+            }else{
+                JOptionPane.showMessageDialog(null, "valor no aceptado");
+            }
+            
+        }
+        if(Arreglos.arregloBus != null){
+            if(Arreglos.i < (Arreglos.arregloBus.length)){
+                this.dispose();
+                windowRegisterBuses.setVisible(true);
+            } 
+        }
+        
+        
     }//GEN-LAST:event_BusesRegisterActionPerformed
 
     private void AnalysisWeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnalysisWeekActionPerformed
-        AnalysisWeek window = new AnalysisWeek();
-        window.setVisible(true);
+        AnalysisWeek windowAnalysisWeek = new AnalysisWeek();
+        windowAnalysisWeek.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_AnalysisWeekActionPerformed
 
