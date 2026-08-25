@@ -32,14 +32,14 @@
                   <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   <Component id="answer3" min="-2" max="-2" attributes="0"/>
                   <Component id="answer7" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                  <Component id="answer2" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jButton2" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Component id="answer1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
           </Group>
@@ -66,11 +66,11 @@
               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jButton2" min="-2" max="-2" attributes="0"/>
+              <Component id="answer1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+              <Component id="answer2" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -142,17 +142,20 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="answer7ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton2">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Answer"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton3">
+    <Component class="javax.swing.JButton" name="answer1">
       <Properties>
         <Property name="text" type="java.lang.String" value="Answer"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="answer1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="answer2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Answer"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="answer2ActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="answer3">

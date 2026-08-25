@@ -38,8 +38,8 @@ public class AnalysisWeek extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         answer7 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        answer1 = new javax.swing.JButton();
+        answer2 = new javax.swing.JButton();
         answer3 = new javax.swing.JButton();
         answer4 = new javax.swing.JButton();
         answer5 = new javax.swing.JButton();
@@ -66,10 +66,11 @@ public class AnalysisWeek extends javax.swing.JFrame {
         answer7.setText("Answer");
         answer7.addActionListener(this::answer7ActionPerformed);
 
-        jButton2.setText("Answer");
+        answer1.setText("Answer");
+        answer1.addActionListener(this::answer1ActionPerformed);
 
-        jButton3.setText("Answer");
-        jButton3.addActionListener(this::jButton3ActionPerformed);
+        answer2.setText("Answer");
+        answer2.addActionListener(this::answer2ActionPerformed);
 
         answer3.setText("Answer");
         answer3.addActionListener(this::answer3ActionPerformed);
@@ -101,14 +102,14 @@ public class AnalysisWeek extends javax.swing.JFrame {
                     .addComponent(jLabel5)
                     .addComponent(answer3)
                     .addComponent(answer7)
-                    .addComponent(jButton3)
+                    .addComponent(answer2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel7)
                     .addComponent(jLabel6)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jButton2))
+                    .addComponent(answer1))
                 .addGap(33, 33, 33))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,11 +129,11 @@ public class AnalysisWeek extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(answer1)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(answer2)
                 .addGap(12, 12, 12)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -182,24 +183,55 @@ public class AnalysisWeek extends javax.swing.JFrame {
        
     }//GEN-LAST:event_answer7ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
+        int valuSaveSmaller = 0;
+        int indexDay = 0;
+        int[] dayTotal = Arreglos.totalStudentsDay();
+        for(int x = 0; x < dayTotal.length;x++ ){
+            if(dayTotal[x] != 0){
+                if(valuSaveSmaller != 0){
+                    if(dayTotal[x] > valuSaveSmaller){
+                        valuSaveSmaller = dayTotal[x];
+                        indexDay = x;
+                    }
+                }else{
+                    valuSaveSmaller = dayTotal[x];
+                    indexDay = x;
+                }
+            }
+            
+            
+        }
+        String answer = " ";
+        switch(indexDay){
+            case 0 -> answer = " Lunes ";
+            case 1 -> answer = " Martes ";
+            case 2 -> answer = " Miercoles ";
+            case 3 -> answer = " Jueves ";
+            case 4 -> answer = " Viernes ";
+            case 5 -> answer = " Sabado ";
+        }
+        
+        JOptionPane.showMessageDialog(null,answer);
+    }//GEN-LAST:event_answer2ActionPerformed
 
     private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
         int valuSaveSmaller = 0;
         int indexDay = 0;
         int[] dayTotal = Arreglos.totalStudentsDay();
         for(int x = 0; x < dayTotal.length;x++ ){
-            if(valuSaveSmaller != 0){
-                if(dayTotal[x] < valuSaveSmaller){
+            if(dayTotal[x] != 0){
+                if(valuSaveSmaller != 0){
+                    if(dayTotal[x] < valuSaveSmaller){
+                        valuSaveSmaller = dayTotal[x];
+                        indexDay = x;
+                    }
+                }else{
                     valuSaveSmaller = dayTotal[x];
                     indexDay = x;
                 }
-            }else{
-                valuSaveSmaller = dayTotal[x];
-                indexDay = x;
             }
+            
             
         }
         String answer = " ";
@@ -260,6 +292,10 @@ public class AnalysisWeek extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_exitActionPerformed
 
+    private void answer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer1ActionPerformed
+        
+    }//GEN-LAST:event_answer1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -286,14 +322,14 @@ public class AnalysisWeek extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton answer1;
+    private javax.swing.JButton answer2;
     private javax.swing.JButton answer3;
     private javax.swing.JButton answer4;
     private javax.swing.JButton answer5;
     private javax.swing.JButton answer6;
     private javax.swing.JButton answer7;
     private javax.swing.JButton exit;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
