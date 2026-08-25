@@ -4,6 +4,8 @@
  */
 package com.mycompany.universidad;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author juan
@@ -35,7 +37,7 @@ public class AnalysisWeek extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        answer7 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -61,8 +63,8 @@ public class AnalysisWeek extends javax.swing.JFrame {
 
         jLabel7.setText("Nombre del conductor y edad que más estudiantes trajo los sabados");
 
-        jButton1.setText("Answer");
-        jButton1.addActionListener(this::jButton1ActionPerformed);
+        answer7.setText("Answer");
+        answer7.addActionListener(this::answer7ActionPerformed);
 
         jButton2.setText("Answer");
 
@@ -98,7 +100,7 @@ public class AnalysisWeek extends javax.swing.JFrame {
                     .addComponent(jButton5)
                     .addComponent(jLabel5)
                     .addComponent(jButton4)
-                    .addComponent(jButton1)
+                    .addComponent(answer7)
                     .addComponent(jButton3)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -150,7 +152,7 @@ public class AnalysisWeek extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
+                .addComponent(answer7)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addComponent(exit)
                 .addGap(40, 40, 40))
@@ -159,9 +161,26 @@ public class AnalysisWeek extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void answer7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer7ActionPerformed
+       final int SATURDAY = 5;
+       int valueSave = 0;
+       int indexSave = 0;
+       for(int i = 0;i < Arreglos.arregloDayWeekPeople.length; i++ ){
+           int  value = value = Arreglos.arregloDayWeekPeople[i][SATURDAY];
+           if(value > valueSave){
+               valueSave = value;
+               indexSave = i;
+           }
+       }
+       if(valueSave != 0){
+           String answer7 = " Name Drive: "+Arreglos.arregloBus[indexSave].getNameDrive()+"\n"+" Age: "+Arreglos.arregloBus[indexSave].getEdad();
+           JOptionPane.showMessageDialog(null, answer7);
+       }else{
+           JOptionPane.showMessageDialog(null, " The day was not worked ");
+       }
+       
+       
+    }//GEN-LAST:event_answer7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
@@ -215,8 +234,8 @@ public class AnalysisWeek extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton answer7;
     private javax.swing.JButton exit;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
