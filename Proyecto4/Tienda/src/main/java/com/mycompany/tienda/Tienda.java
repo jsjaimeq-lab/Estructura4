@@ -11,8 +11,10 @@ package com.mycompany.tienda;
 public class Tienda {
 
     public static void main(String[] args) {
-        CreateFiles archivo = new CreateFiles();
-        archivo.createFileSale("sales",".csv");
-        String[][] y = archivo.readFileSale();
+        CreateFiles sales = new CreateFiles();
+        sales.createFileSale("sales",".csv");
+        String[][] y = sales.readFileSale();
+        CreateFiles product = new CreateFiles();
+        product.createFileSale("product",".csv");
     }
 }
