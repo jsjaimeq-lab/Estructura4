@@ -184,21 +184,19 @@ public class AnalysisWeek extends javax.swing.JFrame {
     }//GEN-LAST:event_answer7ActionPerformed
 
     private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
-        int valuSaveSmaller = 0;
+        int valuSave = 0;
         int indexDay = 0;
         int[] dayTotal = Arreglos.totalStudentsDay();
         for(int x = 0; x < dayTotal.length;x++ ){
-            if(dayTotal[x] != 0){
-                if(valuSaveSmaller != 0){
-                    if(dayTotal[x] > valuSaveSmaller){
-                        valuSaveSmaller = dayTotal[x];
+            if(valuSave != 0){
+                    if(dayTotal[x] > valuSave){
+                        valuSave = dayTotal[x];
                         indexDay = x;
                     }
                 }else{
-                    valuSaveSmaller = dayTotal[x];
+                    valuSave = dayTotal[x];
                     indexDay = x;
                 }
-            }
             
             
         }
@@ -220,8 +218,7 @@ public class AnalysisWeek extends javax.swing.JFrame {
         int indexDay = 0;
         int[] dayTotal = Arreglos.totalStudentsDay();
         for(int x = 0; x < dayTotal.length;x++ ){
-            if(dayTotal[x] != 0){
-                if(valuSaveSmaller != 0){
+            if(valuSaveSmaller != 0){
                     if(dayTotal[x] < valuSaveSmaller){
                         valuSaveSmaller = dayTotal[x];
                         indexDay = x;
@@ -230,7 +227,6 @@ public class AnalysisWeek extends javax.swing.JFrame {
                     valuSaveSmaller = dayTotal[x];
                     indexDay = x;
                 }
-            }
             
             
         }

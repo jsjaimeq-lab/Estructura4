@@ -93,7 +93,7 @@ public class MenuOption extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegisterDayWeekWorkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterDayWeekWorkActionPerformed
-        if(Arreglos.i <= Arreglos.arregloBus.length ){
+        if(Arreglos.i < Arreglos.arregloBus.length){
             String textBus;
             for(int x = 0; x < Arreglos.arregloBus.length; x++){
                 Buses bus = (Buses)Arreglos.arregloBus[x];
