@@ -164,7 +164,47 @@ public class Queries extends javax.swing.JFrame {
     }//GEN-LAST:event_answer1ActionPerformed
 
     private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
-        // TODO add your handling code here:
+        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        String[] product = MenuOption.createFile.readFileProduct();
+        String answer = "";
+        int val = 1;
+        int sale ;
+        
+        while(val < 8){
+            int indexProduct = 0;
+            int indexDay = 0;
+            int maximo = Integer.MIN_VALUE;
+            for(int i = 0; i < product.length; i++){
+                for(int j = val; j < (val+1); j++){
+                    try{
+                        sale = Integer.parseInt(salesWeek[i][j-1]);
+                    }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+                        sale = 0;
+                    }
+                    if(sale > maximo){
+                        maximo = sale;
+                        indexProduct = i;
+                        indexDay = j;
+                    }
+                }
+            }
+            if(maximo == 0){
+                indexDay = 7;
+            }
+            val++;
+            switch(indexDay){
+                case 0 -> answer = answer+"Monday: "+product[indexProduct]+"\n";
+                case 1 -> answer = answer+"Tuesday: "+product[indexProduct]+"\n";
+                case 2 -> answer = answer+"Wendnesday: "+product[indexProduct]+"\n";
+                case 3 -> answer = answer+"Thursday: "+product[indexProduct]+"\n";
+                case 4 -> answer = answer+"Friday: "+product[indexProduct]+"\n";
+                case 5 -> answer = answer+"Saturday: "+product[indexProduct]+"\n";
+                case 6 -> answer = answer+"Sunday: "+product[indexProduct]+"\n";
+                default -> answer = answer+"";
+            }
+        }
+        
+        JOptionPane.showMessageDialog(null,answer);
     }//GEN-LAST:event_answer3ActionPerformed
 
     private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
