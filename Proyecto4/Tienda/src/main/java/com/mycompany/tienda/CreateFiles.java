@@ -18,9 +18,9 @@ import java.nio.file.Files;
  */
 public class CreateFiles {
     
-    private String  url;
+    private  String  url;
     
-    public void createFileSale(String nameFile,String extension){
+    public String createFileSale(String nameFile,String extension){
         
         url = nameFile+extension;
         File archivo = new File(url);
@@ -31,6 +31,7 @@ public class CreateFiles {
                 System.out.println(" el archivo por crear no fue posible "+error);
             }
         }
+        return url;
     }
     
     
@@ -40,7 +41,7 @@ public class CreateFiles {
         int totalLines = 0;
         final int DAYSWEEK =7;
         
-        Path path = Paths.get(url);
+        Path path = Paths.get(MenuOption.urlFileSales);
         try(Stream<String> stream = Files.lines(path)){
             totalLines = (int)(stream.count());
         }catch(IOException e){
@@ -48,12 +49,12 @@ public class CreateFiles {
         }
         
         String[][] salesWeek = new String[totalLines][DAYSWEEK];
-        try(BufferedReader fileReader = new BufferedReader(new FileReader(url))){
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(MenuOption.urlFileSales))){
             
             String linea;
             int i = 0;
             while((linea = fileReader.readLine()) != null){
-                
+                 
                salesWeek[i] = linea.split(",");
                i++;  
             }
@@ -61,5 +62,32 @@ public class CreateFiles {
             
         }
         return salesWeek;
+    }
+    
+    public String[] readFileProduct(){
+        
+        int totalLines = 0;
+        Path path = Paths.get(MenuOption.urlFileProduct);
+        try(Stream<String> stream = Files.lines(path)){
+            totalLines = (int)(stream.count());
+        }catch(IOException e){
+            
+        }
+        
+        String[] product = new String[totalLines];
+        try(BufferedReader fileReader = new BufferedReader(new FileReader(MenuOption.urlFileProduct))){
+            
+            String linea;
+            int i = 0;
+            while((linea = fileReader.readLine()) != null){
+                 
+               product[i] = linea;
+               i++;  
+            }
+        }catch(IOException error){
+            
+        }
+        
+        return product;
     }
 }

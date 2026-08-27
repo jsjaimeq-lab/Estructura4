@@ -4,6 +4,9 @@
  */
 package com.mycompany.tienda;
 
+
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author juan
@@ -28,21 +31,175 @@ public class Queries extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        answer1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        answer2 = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        answer3 = new javax.swing.JButton();
+        answer4 = new javax.swing.JButton();
+        answer5 = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        exit = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("Informe de ventas de la semana");
+
+        answer1.setText("Answer");
+        answer1.addActionListener(this::answer1ActionPerformed);
+
+        jLabel2.setText("Total ventas por producto");
+
+        answer2.setText("Answer");
+        answer2.addActionListener(this::answer2ActionPerformed);
+
+        jLabel3.setText("Nombre de producto con mayor venta de cada día");
+
+        answer3.setText("Answer");
+        answer3.addActionListener(this::answer3ActionPerformed);
+
+        answer4.setText("Answer");
+        answer4.addActionListener(this::answer4ActionPerformed);
+
+        answer5.setText("Answer");
+        answer5.addActionListener(this::answer5ActionPerformed);
+
+        jLabel4.setText("Promedio de ventas de la semana ");
+
+        jLabel5.setText("Nombre producto, días de cada producto que no se vendio nada ");
+
+        jLabel6.setText("Queries");
+
+        exit.setText("Exit");
+        exit.addActionListener(this::exitActionPerformed);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addGap(255, 255, 255))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel4)
+                            .addComponent(answer5)
+                            .addComponent(answer4)
+                            .addComponent(answer3)
+                            .addComponent(jLabel3)
+                            .addComponent(answer2)
+                            .addComponent(jLabel2)
+                            .addComponent(answer1)
+                            .addComponent(jLabel1)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(231, 231, 231)
+                        .addComponent(exit)))
+                .addContainerGap(78, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addComponent(jLabel6)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answer1)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answer2)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answer3)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answer4)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(answer5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                .addComponent(exit)
+                .addGap(50, 50, 50))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void answer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer1ActionPerformed
+        this.dispose();
+        Answer1 answer = new Answer1();
+        DefaultTableModel modelTable = (DefaultTableModel) answer.SalesWeek.getModel();
+        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        String[] product = MenuOption.createFile.readFileProduct();
+        int numberRow = product.length;
+        System.out.println(numberRow);
+        modelTable.setRowCount(numberRow);
+        String value;
+        for(int i = 0; i < product.length; i++){
+            modelTable.setValueAt(product[i], i, 0);
+            for(int j = 1; j < 8; j++){
+                try{
+                     value = salesWeek[i][j-1];
+                }catch(ArrayIndexOutOfBoundsException e){
+                    value = "0";
+                }
+                modelTable.setValueAt(value, i, j);
+                
+            }
+        }
+        
+        answer.setVisible(true);
+    }//GEN-LAST:event_answer1ActionPerformed
+
+    private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_answer3ActionPerformed
+
+    private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
+        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        String[] product = MenuOption.createFile.readFileProduct();
+        String answer = "";
+        int suma = 0;
+        for(int i = 0; i < product.length; i++){
+            answer = answer+product[i];
+            for(int j = 1; j < 8; j++){
+                try{
+                     suma = suma +Integer.parseInt(salesWeek[i][j-1]);
+                }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
+                    suma = suma + 0;
+                }
+            }
+            answer = answer+": "+suma+"\n";
+        }
+        JOptionPane.showMessageDialog(null,answer);
+        
+    }//GEN-LAST:event_answer2ActionPerformed
+
+    private void answer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_answer4ActionPerformed
+
+    private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_answer5ActionPerformed
+
+    private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
+        this.dispose();
+        MenuOption windowMenuOption = new MenuOption();
+        windowMenuOption.setVisible(true);
+    }//GEN-LAST:event_exitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -70,5 +227,17 @@ public class Queries extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton answer1;
+    private javax.swing.JButton answer2;
+    private javax.swing.JButton answer3;
+    private javax.swing.JButton answer4;
+    private javax.swing.JButton answer5;
+    private javax.swing.JButton exit;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }
