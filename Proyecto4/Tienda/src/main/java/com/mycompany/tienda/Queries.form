@@ -50,7 +50,7 @@
                       <Component id="exit" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace pref="115" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -89,7 +89,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Informe de ventas de la semana"/>
+        <Property name="text" type="java.lang.String" value="Weekly Sales Report"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="answer1">
@@ -102,7 +102,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Total ventas por producto"/>
+        <Property name="text" type="java.lang.String" value="Total sales per product"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="answer2">
@@ -115,7 +115,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre de producto con mayor venta de cada d&#xed;a"/>
+        <Property name="text" type="java.lang.String" value="Top-selling product name of each day"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="answer3">
@@ -144,12 +144,12 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel4">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Promedio de ventas de la semana "/>
+        <Property name="text" type="java.lang.String" value="Average sales for the week"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre producto, d&#xed;as de cada producto que no se vendio nada "/>
+        <Property name="text" type="java.lang.String" value="Product name, days for each product that nothing was sold"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">

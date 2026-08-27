@@ -15,6 +15,8 @@ public class MenuOption extends javax.swing.JFrame{
     public static CreateFiles createFile = new CreateFiles();
     public static String urlFileProduct;
     public static String urlFileSales;
+    public static String[][] salesWeek;
+    public static String[] product;
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -101,6 +103,8 @@ public class MenuOption extends javax.swing.JFrame{
 
         urlFileProduct = createFile.createFileSale("product",".csv");
         urlFileSales = createFile.createFileSale("sales",".csv");
+        salesWeek = MenuOption.createFile.readFileSale();
+        product = MenuOption.createFile.readFileProduct();
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new MenuOption().setVisible(true));
     }

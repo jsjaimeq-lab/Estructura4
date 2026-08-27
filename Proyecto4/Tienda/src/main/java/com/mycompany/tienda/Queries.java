@@ -46,17 +46,17 @@ public class Queries extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Informe de ventas de la semana");
+        jLabel1.setText("Weekly Sales Report");
 
         answer1.setText("Answer");
         answer1.addActionListener(this::answer1ActionPerformed);
 
-        jLabel2.setText("Total ventas por producto");
+        jLabel2.setText("Total sales per product");
 
         answer2.setText("Answer");
         answer2.addActionListener(this::answer2ActionPerformed);
 
-        jLabel3.setText("Nombre de producto con mayor venta de cada día");
+        jLabel3.setText("Top-selling product name of each day");
 
         answer3.setText("Answer");
         answer3.addActionListener(this::answer3ActionPerformed);
@@ -67,9 +67,9 @@ public class Queries extends javax.swing.JFrame {
         answer5.setText("Answer");
         answer5.addActionListener(this::answer5ActionPerformed);
 
-        jLabel4.setText("Promedio de ventas de la semana ");
+        jLabel4.setText("Average sales for the week");
 
-        jLabel5.setText("Nombre producto, días de cada producto que no se vendio nada ");
+        jLabel5.setText("Product name, days for each product that nothing was sold");
 
         jLabel6.setText("Queries");
 
@@ -102,7 +102,7 @@ public class Queries extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(231, 231, 231)
                         .addComponent(exit)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                .addContainerGap(115, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,17 +141,15 @@ public class Queries extends javax.swing.JFrame {
         this.dispose();
         Answer1 answer = new Answer1();
         DefaultTableModel modelTable = (DefaultTableModel) answer.SalesWeek.getModel();
-        String[][] salesWeek = MenuOption.createFile.readFileSale();
-        String[] product = MenuOption.createFile.readFileProduct();
-        int numberRow = product.length;
+        int numberRow = MenuOption.product.length;
         System.out.println(numberRow);
         modelTable.setRowCount(numberRow);
         String value;
-        for(int i = 0; i < product.length; i++){
-            modelTable.setValueAt(product[i], i, 0);
+        for(int i = 0; i < MenuOption.product.length; i++){
+            modelTable.setValueAt(MenuOption.product[i], i, 0);
             for(int j = 1; j < 8; j++){
                 try{
-                     value = salesWeek[i][j-1];
+                     value = MenuOption.salesWeek[i][j-1];
                 }catch(ArrayIndexOutOfBoundsException e){
                     value = "0";
                 }
@@ -164,8 +162,7 @@ public class Queries extends javax.swing.JFrame {
     }//GEN-LAST:event_answer1ActionPerformed
 
     private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
-        String[][] salesWeek = MenuOption.createFile.readFileSale();
-        String[] product = MenuOption.createFile.readFileProduct();
+
         String answer = "";
         int val = 1;
         int sale ;
@@ -174,10 +171,10 @@ public class Queries extends javax.swing.JFrame {
             int indexProduct = 0;
             int indexDay = 0;
             int maximo = Integer.MIN_VALUE;
-            for(int i = 0; i < product.length; i++){
+            for(int i = 0; i < MenuOption.product.length; i++){
                 for(int j = val; j < (val+1); j++){
                     try{
-                        sale = Integer.parseInt(salesWeek[i][j-1]);
+                        sale = Integer.parseInt(MenuOption.salesWeek[i][j-1]);
                     }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
                         sale = 0;
                     }
@@ -193,13 +190,13 @@ public class Queries extends javax.swing.JFrame {
             }
             val++;
             switch(indexDay){
-                case 0 -> answer = answer+"Monday: "+product[indexProduct]+"\n";
-                case 1 -> answer = answer+"Tuesday: "+product[indexProduct]+"\n";
-                case 2 -> answer = answer+"Wendnesday: "+product[indexProduct]+"\n";
-                case 3 -> answer = answer+"Thursday: "+product[indexProduct]+"\n";
-                case 4 -> answer = answer+"Friday: "+product[indexProduct]+"\n";
-                case 5 -> answer = answer+"Saturday: "+product[indexProduct]+"\n";
-                case 6 -> answer = answer+"Sunday: "+product[indexProduct]+"\n";
+                case 0 -> answer = answer+"Monday: "+MenuOption.product[indexProduct]+"\n";
+                case 1 -> answer = answer+"Tuesday: "+MenuOption.product[indexProduct]+"\n";
+                case 2 -> answer = answer+"Wendnesday: "+MenuOption.product[indexProduct]+"\n";
+                case 3 -> answer = answer+"Thursday: "+MenuOption.product[indexProduct]+"\n";
+                case 4 -> answer = answer+"Friday: "+MenuOption.product[indexProduct]+"\n";
+                case 5 -> answer = answer+"Saturday: "+MenuOption.product[indexProduct]+"\n";
+                case 6 -> answer = answer+"Sunday: "+MenuOption.product[indexProduct]+"\n";
                 default -> answer = answer+"";
             }
         }
@@ -208,15 +205,14 @@ public class Queries extends javax.swing.JFrame {
     }//GEN-LAST:event_answer3ActionPerformed
 
     private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
-        String[][] salesWeek = MenuOption.createFile.readFileSale();
-        String[] product = MenuOption.createFile.readFileProduct();
+        
         String answer = "";
         int suma = 0;
-        for(int i = 0; i < product.length; i++){
-            answer = answer+product[i];
+        for(int i = 0; i < MenuOption.product.length; i++){
+            answer = answer+MenuOption.product[i];
             for(int j = 1; j < 8; j++){
                 try{
-                     suma = suma +Integer.parseInt(salesWeek[i][j-1]);
+                     suma = suma +Integer.parseInt(MenuOption.salesWeek[i][j-1]);
                 }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
                     suma = suma + 0;
                 }
@@ -228,13 +224,13 @@ public class Queries extends javax.swing.JFrame {
     }//GEN-LAST:event_answer2ActionPerformed
 
     private void answer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer4ActionPerformed
-        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        
         double sumaTotal = 0;
         double promedio = 0;
-        for(int i = 0; i < salesWeek.length; i++){
+        for(int i = 0; i < MenuOption.salesWeek.length; i++){
             for(int j = 0; j < 7 ; j++){
                 try{
-                    sumaTotal = sumaTotal+ Integer.parseInt(salesWeek[i][j]);
+                    sumaTotal = sumaTotal+ Integer.parseInt(MenuOption.salesWeek[i][j]);
                 }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
                     sumaTotal = sumaTotal +0;
                 }
@@ -248,17 +244,16 @@ public class Queries extends javax.swing.JFrame {
 
     private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
         
-        String[][] salesWeek = MenuOption.createFile.readFileSale();
-        String[] product = MenuOption.createFile.readFileProduct();
-        String[] days = new String[product.length];
+        
+        String[] days = new String[MenuOption.product.length];
         int[] indexDay = new int[7];
         int valor = 0;
-        for(int i = 0; i < salesWeek.length; i++){
+        for(int i = 0; i < MenuOption.salesWeek.length; i++){
             int x = 0;
             int indexCantidad = 0;
             for(int j = 0; j < 7; j++){
                 try{
-                    valor = Integer.parseInt(salesWeek[i][j]); 
+                    valor = Integer.parseInt(MenuOption.salesWeek[i][j]); 
                 }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
                     valor = 0;
                 }
@@ -286,7 +281,7 @@ public class Queries extends javax.swing.JFrame {
         }
         String answer = " ";
         for(int h = 0; h < days.length; h++){
-            answer = answer+product[h]+" : "+days[h]+"\n";
+            answer = answer+MenuOption.product[h]+" : "+days[h]+"\n";
         }
         JOptionPane.showMessageDialog(null,answer);
     }//GEN-LAST:event_answer5ActionPerformed
