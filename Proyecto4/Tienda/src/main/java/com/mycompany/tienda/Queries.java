@@ -228,11 +228,28 @@ public class Queries extends javax.swing.JFrame {
     }//GEN-LAST:event_answer2ActionPerformed
 
     private void answer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer4ActionPerformed
-        // TODO add your handling code here:
+        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        double sumaTotal = 0;
+        double promedio = 0;
+        for(int i = 0; i < salesWeek.length; i++){
+            for(int j = 0; j < 7 ; j++){
+                try{
+                    sumaTotal = sumaTotal+ Integer.parseInt(salesWeek[i][j]);
+                }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
+                    sumaTotal = sumaTotal +0;
+                }
+            }
+        }
+        promedio = sumaTotal/7;
+        JOptionPane.showMessageDialog(null, " total average for the week: "+String.format("%.2f", promedio));
+        
+        
     }//GEN-LAST:event_answer4ActionPerformed
 
     private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
-        // TODO add your handling code here:
+        
+        
+        
     }//GEN-LAST:event_answer5ActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
