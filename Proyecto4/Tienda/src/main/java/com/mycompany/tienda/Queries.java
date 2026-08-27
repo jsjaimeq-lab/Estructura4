@@ -248,8 +248,47 @@ public class Queries extends javax.swing.JFrame {
 
     private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
         
-        
-        
+        String[][] salesWeek = MenuOption.createFile.readFileSale();
+        String[] product = MenuOption.createFile.readFileProduct();
+        String[] days = new String[product.length];
+        int[] indexDay = new int[7];
+        int valor = 0;
+        for(int i = 0; i < salesWeek.length; i++){
+            int x = 0;
+            int indexCantidad = 0;
+            for(int j = 0; j < 7; j++){
+                try{
+                    valor = Integer.parseInt(salesWeek[i][j]); 
+                }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
+                    valor = 0;
+                }
+                
+                if(valor == 0){
+                    indexDay[x] = j;
+                    indexCantidad++;
+                    x++;
+                }
+            }
+            
+            for(int y = 0; y < indexCantidad; y++){
+               switch(indexDay[y]){
+                    case 0 -> days[i] = days[i]+","+"Monday";
+                    case 1 -> days[i] = days[i]+","+"Tuesday";
+                    case 2 -> days[i] = days[i]+","+"Wendnesday";
+                    case 3 -> days[i] = days[i]+","+"Thursday";
+                    case 4 -> days[i] = days[i]+","+"Friday";
+                    case 5 -> days[i] = days[i]+","+"Saturday";
+                    case 6 -> days[i] = days[i]+","+"Sunday";
+                }
+               
+            }
+            
+        }
+        String answer = " ";
+        for(int h = 0; h < days.length; h++){
+            answer = answer+product[h]+" : "+days[h]+"\n";
+        }
+        JOptionPane.showMessageDialog(null,answer);
     }//GEN-LAST:event_answer5ActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed
