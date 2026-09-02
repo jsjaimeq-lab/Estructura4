@@ -13,6 +13,8 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Queries extends javax.swing.JFrame {
     
+    Answers answer = new Answers();
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Queries.class.getName());
 
     /**
@@ -139,151 +141,30 @@ public class Queries extends javax.swing.JFrame {
 
     private void answer1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer1ActionPerformed
         this.dispose();
-        Answer1 answer = new Answer1();
-        DefaultTableModel modelTable = (DefaultTableModel) answer.SalesWeek.getModel();
-        int numberRow = MenuOption.product.length;
-        System.out.println(numberRow);
-        modelTable.setRowCount(numberRow);
-        String value;
-        for(int i = 0; i < MenuOption.product.length; i++){
-            modelTable.setValueAt(MenuOption.product[i], i, 0);
-            for(int j = 1; j < 8; j++){
-                try{
-                     value = MenuOption.salesWeek[i][j-1];
-                }catch(ArrayIndexOutOfBoundsException e){
-                    value = "0";
-                }
-                modelTable.setValueAt(value, i, j);
-                
-            }
-        }
+        answer.answer1();
         
-        answer.setVisible(true);
     }//GEN-LAST:event_answer1ActionPerformed
 
     private void answer3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer3ActionPerformed
 
-        String answer = "";
-        int val = 1;
-        int sale ;
-        
-        while(val < 8){
-            int indexProduct = 0;
-            int indexDay = 0;
-            int maximo = Integer.MIN_VALUE;
-            for(int i = 0; i < MenuOption.product.length; i++){
-                for(int j = val; j < (val+1); j++){
-                    try{
-                        sale = Integer.parseInt(MenuOption.salesWeek[i][j-1]);
-                    }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
-                        sale = 0;
-                    }
-                    if(sale > maximo){
-                        maximo = sale;
-                        indexProduct = i;
-                        indexDay = j;
-                    }
-                }
-            }
-            if(maximo == 0){
-                indexDay = 7;
-            }
-            val++;
-            switch(indexDay){
-                case 0 -> answer = answer+"Monday: "+MenuOption.product[indexProduct]+"\n";
-                case 1 -> answer = answer+"Tuesday: "+MenuOption.product[indexProduct]+"\n";
-                case 2 -> answer = answer+"Wendnesday: "+MenuOption.product[indexProduct]+"\n";
-                case 3 -> answer = answer+"Thursday: "+MenuOption.product[indexProduct]+"\n";
-                case 4 -> answer = answer+"Friday: "+MenuOption.product[indexProduct]+"\n";
-                case 5 -> answer = answer+"Saturday: "+MenuOption.product[indexProduct]+"\n";
-                case 6 -> answer = answer+"Sunday: "+MenuOption.product[indexProduct]+"\n";
-                default -> answer = answer+"";
-            }
-        }
-        
-        JOptionPane.showMessageDialog(null,answer);
+        answer.answer3();
     }//GEN-LAST:event_answer3ActionPerformed
 
     private void answer2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer2ActionPerformed
         
-        String answer = "";
-        int suma = 0;
-        for(int i = 0; i < MenuOption.product.length; i++){
-            answer = answer+MenuOption.product[i];
-            for(int j = 1; j < 8; j++){
-                try{
-                     suma = suma +Integer.parseInt(MenuOption.salesWeek[i][j-1]);
-                }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
-                    suma = suma + 0;
-                }
-            }
-            answer = answer+": "+suma+"\n";
-        }
-        JOptionPane.showMessageDialog(null,answer);
+        answer.answer2();
         
     }//GEN-LAST:event_answer2ActionPerformed
 
     private void answer4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer4ActionPerformed
         
-        double sumaTotal = 0;
-        double promedio = 0;
-        for(int i = 0; i < MenuOption.salesWeek.length; i++){
-            for(int j = 0; j < 7 ; j++){
-                try{
-                    sumaTotal = sumaTotal+ Integer.parseInt(MenuOption.salesWeek[i][j]);
-                }catch(ArrayIndexOutOfBoundsException | NumberFormatException e){
-                    sumaTotal = sumaTotal +0;
-                }
-            }
-        }
-        promedio = sumaTotal/7;
-        JOptionPane.showMessageDialog(null, " total average for the week: "+String.format("%.2f", promedio));
-        
+        answer.answer4();
         
     }//GEN-LAST:event_answer4ActionPerformed
 
     private void answer5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_answer5ActionPerformed
         
-        
-        String[] days = new String[MenuOption.product.length];
-        int[] indexDay = new int[7];
-        int valor = 0;
-        for(int i = 0; i < MenuOption.salesWeek.length; i++){
-            int x = 0;
-            int indexCantidad = 0;
-            for(int j = 0; j < 7; j++){
-                try{
-                    valor = Integer.parseInt(MenuOption.salesWeek[i][j]); 
-                }catch(NumberFormatException | ArrayIndexOutOfBoundsException e){
-                    valor = 0;
-                }
-                
-                if(valor == 0){
-                    indexDay[x] = j;
-                    indexCantidad++;
-                    x++;
-                }
-            }
-            
-            for(int y = 0; y < indexCantidad; y++){
-               switch(indexDay[y]){
-                    case 0 -> days[i] = days[i]+","+"Monday";
-                    case 1 -> days[i] = days[i]+","+"Tuesday";
-                    case 2 -> days[i] = days[i]+","+"Wendnesday";
-                    case 3 -> days[i] = days[i]+","+"Thursday";
-                    case 4 -> days[i] = days[i]+","+"Friday";
-                    case 5 -> days[i] = days[i]+","+"Saturday";
-                    case 6 -> days[i] = days[i]+","+"Sunday";
-                }
-               
-            }
-            
-        }
-        String answer = " ";
-        for(int h = 0; h < days.length; h++){
-            answer = answer+MenuOption.product[h]+" : "+days[h]+"\n";
-        }
-        JOptionPane.showMessageDialog(null,answer);
+        answer.answer5();
     }//GEN-LAST:event_answer5ActionPerformed
 
     private void exitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitActionPerformed

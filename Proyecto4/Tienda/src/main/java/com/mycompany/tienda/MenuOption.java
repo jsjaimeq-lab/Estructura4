@@ -16,7 +16,8 @@ public class MenuOption extends javax.swing.JFrame{
     public static String urlFileProduct;
     public static String urlFileSales;
     public static String[][] salesWeek;
-    public static String[] product;
+    public static Products[] product;
+    
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 

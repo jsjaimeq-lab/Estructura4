@@ -64,8 +64,9 @@ public class CreateFiles {
         return salesWeek;
     }
     
-    public String[] readFileProduct(){
+    public Products[] readFileProduct(){
         
+        Products product ;
         int totalLines = 0;
         Path path = Paths.get(MenuOption.urlFileProduct);
         try(Stream<String> stream = Files.lines(path)){
@@ -74,20 +75,27 @@ public class CreateFiles {
             
         }
         
-        String[] product = new String[totalLines];
+        String[][] line = new String[totalLines][4];
         try(BufferedReader fileReader = new BufferedReader(new FileReader(MenuOption.urlFileProduct))){
             
             String linea;
             int i = 0;
             while((linea = fileReader.readLine()) != null){
                  
-               product[i] = linea;
+               line[i] = linea.split(",");
                i++;  
             }
         }catch(IOException error){
             
         }
+        Products[] productsArray = new Products[totalLines];
+        int i = 0;
+        for(String[] arreglo : line){
+            product = new Products(arreglo[0],arreglo[1],arreglo[2],arreglo[3]);
+            productsArray[i] = product;
+            i++;
+        }
         
-        return product;
+        return productsArray;
     }
 }
