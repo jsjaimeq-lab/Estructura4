@@ -4,7 +4,11 @@
  */
 package com.mycompany.tienda;
 
-import java.io.IOException;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,7 +21,7 @@ public class MenuOption extends javax.swing.JFrame{
     public static String urlFileSales;
     public static String[][] salesWeek;
     public static Products[] product;
-    
+    //public static JTextField textSearch = new JTextField(20);
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MenuOption.class.getName());
 
@@ -26,7 +30,9 @@ public class MenuOption extends javax.swing.JFrame{
      */
     public MenuOption(){
         initComponents();
-        
+        DefaultTableModel modelTable = new DefaultTableModel(new Object[]{"name",0,0,0},0 );
+        this.TabletProduct.setModel(modelTable);
+        SearchLive buscador = new SearchLive(this.TabletProduct);
     }
 
     /**
@@ -38,8 +44,32 @@ public class MenuOption extends javax.swing.JFrame{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         queries = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        textSearch = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        TabletProduct = new javax.swing.JTable();
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +78,29 @@ public class MenuOption extends javax.swing.JFrame{
 
         jLabel1.setText("Menu Option");
 
+        textSearch.addActionListener(this::textSearchActionPerformed);
+
+        TabletProduct.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Name", "Price", "Cantidad total vendida", "Valor total vendido en la semana"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jScrollPane4.setViewportView(TabletProduct);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -55,21 +108,30 @@ public class MenuOption extends javax.swing.JFrame{
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(116, 116, 116)
-                        .addComponent(queries, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
-                        .addComponent(jLabel1)))
-                .addContainerGap(156, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(121, 121, 121)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(queries, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 961, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addGap(53, 53, 53)
                 .addComponent(queries)
-                .addGap(110, 110, 110))
+                .addGap(43, 43, 43)
+                .addComponent(textSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(89, 89, 89)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(166, Short.MAX_VALUE))
         );
 
         pack();
@@ -80,6 +142,11 @@ public class MenuOption extends javax.swing.JFrame{
         this.dispose();
         windowQueries.setVisible(true);
     }//GEN-LAST:event_queriesActionPerformed
+
+    private void textSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textSearchActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_textSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -101,7 +168,6 @@ public class MenuOption extends javax.swing.JFrame{
             logger.log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         urlFileProduct = createFile.createFileSale("product",".csv");
         urlFileSales = createFile.createFileSale("sales",".csv");
         salesWeek = MenuOption.createFile.readFileSale();
@@ -111,7 +177,14 @@ public class MenuOption extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public static javax.swing.JTable TabletProduct;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JButton queries;
+    public static javax.swing.JTextField textSearch;
     // End of variables declaration//GEN-END:variables
 }

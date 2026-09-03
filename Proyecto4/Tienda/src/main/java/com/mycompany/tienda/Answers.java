@@ -123,6 +123,7 @@ public class Answers {
         for(int i = 0; i < MenuOption.salesWeek.length; i++){
             int x = 0;
             int indexCantidad = 0;
+            String text = "";
             for(int j = 0; j < 7; j++){
                 try{
                     valor = (Double.parseDouble(MenuOption.salesWeek[i][j])*MenuOption.product[i].getPrice()); 
@@ -139,16 +140,17 @@ public class Answers {
             
             for(int y = 0; y < indexCantidad; y++){
                switch(indexDay[y]){
-                    case 0 -> days[i] = days[i].replace(null, " ")+","+"Monday";
-                    case 1 -> days[i] = days[i].replace(null, " ")+","+"Tuesday";
-                    case 2 -> days[i] = days[i].replace(null, " ")+","+"Wendnesday";
-                    case 3 -> days[i] = days[i].replace(null, " ")+","+"Thursday";
-                    case 4 -> days[i] = days[i].replace(null, " ")+","+"Friday";
-                    case 5 -> days[i] = days[i].replace(null, " ")+","+"Saturday";
-                    case 6 -> days[i] = days[i].replace(null, " ")+","+"Sunday";
+                    case 0 -> text = text+"Monday"+",";
+                    case 1 -> text = text+"Tuesday"+",";
+                    case 2 -> text = text+"Wendnesday"+",";
+                    case 3 -> text = text+"Thursday"+",";
+                    case 4 -> text = text+"Friday"+",";
+                    case 5 -> text = text+"Saturday"+",";
+                    case 6 -> text = text+"Sunday"+",";
                 }
-               System.out.print(y);
+          
             }
+            days[i] =text;
             
         }
         String answer = "";
@@ -158,4 +160,6 @@ public class Answers {
         JOptionPane.showMessageDialog(null,answer);
         
     }
+    
+    
 }
