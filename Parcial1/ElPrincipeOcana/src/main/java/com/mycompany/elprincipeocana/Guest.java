@@ -4,6 +4,8 @@
  */
 package com.mycompany.elprincipeocana;
 
+import java.util.ArrayList;
+
 import java.time.LocalDateTime;
 public class Guest {
     
@@ -14,20 +16,22 @@ public class Guest {
     private String document;
     private String numberPhone;
     private LocalDateTime entryDate;
+    private LocalDateTime exitDate;
     private boolean[][] assignedDayRoom = new boolean[10][7];
-    // Creamos el constructor
     
+    // Creamos el constructor
     public Guest(){
         
     }
 
-    public Guest(String name, String lastName, String document, String numberPhone, LocalDateTime entryDate,boolean[][] assignedDayRoom) {
+    public Guest(String name, String lastName, String document, String numberPhone, LocalDateTime entryDate,boolean[][] assignedDayRoom ) {
         this.setDocument(document);
         this.setName(name);
         this.setLastName(lastName);
         this.setNumberPhone(numberPhone);
         this.setEntryDate(entryDate);
         this.setAssignedDayRoom(assignedDayRoom);
+        
     }
     
     
@@ -72,14 +76,17 @@ public class Guest {
     public void setEntryDate(LocalDateTime entryDate) {
         this.entryDate = entryDate;
     }
-   
-    public void setAssignedDayRoom(boolean[][] assignedDayRoom){
+
+    public boolean[][] getAssignedDayRoom() {
+        return assignedDayRoom;
+    }
+
+    public void setAssignedDayRoom(boolean[][] assignedDayRoom) {
         this.assignedDayRoom = assignedDayRoom;
     }
+
+   
     
-    public boolean[][] getAssignedDayRoom(){
-        return this.assignedDayRoom;
-    }
     
 }
 

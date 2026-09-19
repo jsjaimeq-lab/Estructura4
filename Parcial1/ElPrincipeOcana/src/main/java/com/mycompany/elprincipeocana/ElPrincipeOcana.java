@@ -26,5 +26,8 @@ public class ElPrincipeOcana {
         for(String u : g){
             System.out.println(u);
         }
+        
+        x.modify(13, "ya", "juan");
+        System.out.println(HotelOperations.guests.get(0).getEntryDate());
     }
 }
