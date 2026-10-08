@@ -127,13 +127,15 @@ public class ListDoublyLinked {
     public ArrayList<String> getList(){
         
         ArrayList<String> names = new ArrayList<>();
-        
+        int x = 0;
         if(isEmpty()){
             return names;
         }
         Nodo actual = cabeza;
         if(actual.after != null && actual.before != null){
             do{
+                x++;
+                System.out.println(" en proceso"+x);
                 names.add(actual.valor);
                 actual = actual.after;
             }while(actual != cabeza);
@@ -145,5 +147,11 @@ public class ListDoublyLinked {
         
     }
     
+    public void addBig(String[] names){
+        
+        for(String name:names){
+            addFirts(name);
+        }
+    }
     
 }

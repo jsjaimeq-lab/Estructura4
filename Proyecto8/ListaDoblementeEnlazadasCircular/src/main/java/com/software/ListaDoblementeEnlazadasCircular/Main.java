@@ -167,11 +167,14 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_AddEndLinkedActionPerformed
 
     private void InsertVolumenNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertVolumenNodoActionPerformed
-        long tiempoInicio = System.nanoTime();
+        
         String name = "user";
-        for(int x = 0; x < 30000000; x++){
-            Main.names.addFirts(name+" "+x);
+        String[] names = new String[1000000];
+        for(int x = 0; x < 1000000; x++){
+            names[x] = name+" "+x;
         }
+        long tiempoInicio = System.nanoTime();
+        Main.names.addBig(names);
         long tiempoFinal = System.nanoTime();
         double duracion = (tiempoFinal-tiempoInicio)/1_000_000_000.0;
         
@@ -191,12 +194,10 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_AddBeforeNodoActionPerformed
 
     private void InformationNodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InformationNodoActionPerformed
-        ArrayList<String> nombres = names.getList();
-        String txt = "";
-        for(String name: nombres){
-            txt = txt+name+"\n";
-        }
-        JOptionPane.showMessageDialog(null, txt);
+        
+        
+        InformationView view = new InformationView();
+        view.setVisible(true);
     }//GEN-LAST:event_InformationNodoActionPerformed
 
     /**
