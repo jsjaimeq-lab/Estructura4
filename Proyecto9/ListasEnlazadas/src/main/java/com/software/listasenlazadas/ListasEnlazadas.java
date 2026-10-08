@@ -78,17 +78,11 @@ public class ListasEnlazadas {
             return;
         }
         
-        Nodo temporal = cabeza;
-        int bus = 0;
-        while(temporal != null){
-            if(bus == index){
-                nuevo.setAfter(temporal.getAfter());
-                temporal.setAfter(nuevo);
-                return;
-            }
-            bus++;
-            temporal = temporal.getAfter();
+        if(index == 0){
+            addFirts(age,name);
+            return;
         }
+        addAfter((index-1),age,name);
         
     }
     
