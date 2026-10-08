@@ -24,11 +24,17 @@ public class ListDoublyLinked {
         if(isEmpty()){
             cabeza = nuevo;
             cola = nuevo;
-        }else{
-            cabeza.before = nuevo;
-            nuevo.after = cabeza;
-            cabeza = nuevo;
+            cabeza.before = cabeza;
+            cabeza.after = cabeza;
+            return;
         }
+        
+        nuevo.after = cabeza;
+        nuevo.before = cola;
+        
+        cabeza.before = nuevo;
+        cola.after = nuevo;
+        cabeza = nuevo;
     }
     
     public void addlast(String valor){
@@ -36,19 +42,26 @@ public class ListDoublyLinked {
         if(isEmpty()){
             cabeza = nuevo;
             cola = nuevo;
+            cola.before = cabeza;
+            cola.after = cabeza;
         }else{
-            cola.after = nuevo;
+            
+            
+            nuevo.after = cabeza;
             nuevo.before = cola;
+            
+            cola.after = nuevo;
+            cabeza.before = nuevo;
             cola = nuevo;
+            
         }
     }
     
     public void addAfter(int index,String valor){
         
         if(isEmpty()){
-            Nodo nuevo = new Nodo(valor);
-            cabeza = nuevo;
-            cola = nuevo;
+            addFirts(valor);
+            
         }else{
             
             Nodo actual = cabeza;
@@ -61,14 +74,12 @@ public class ListDoublyLinked {
                     
                     nuevo.after = actual.after;
                     nuevo.before = actual;
-                    
-                    if(actual.after == null){
-                        cola = nuevo;
-                    }else{
-                        actual.after.before = nuevo;
-                    }
-                    
+                    actual.after.before = nuevo;
                     actual.after = nuevo;
+                    
+                    if(cola == actual){
+                        cabeza.before = nuevo;
+                    }
                     return;
                     
                 }
@@ -97,15 +108,13 @@ public class ListDoublyLinked {
                     Nodo nuevo = new Nodo(valor);
                     
                     nuevo.after = actual;
-                    nuevo.before = actual.before;
-                    
-                    if(index == 0){
-                        cabeza = nuevo;
-                    }else{
-                        actual.before.after = nuevo;
-                    }
-                    
+                    nuevo.before = actual.before; 
+                    actual.before.after = nuevo;
                     actual.before = nuevo;
+                    
+                    if(cabeza == actual){
+                        cola.after = nuevo;
+                    }
                     return;
                     
                 }
@@ -116,15 +125,23 @@ public class ListDoublyLinked {
     }
     
     public ArrayList<String> getList(){
-        Nodo actual = cabeza;
-        ArrayList<String> names = new ArrayList<String>();
         
-        while(actual != null){
-            
-            names.add(actual.valor);
-            actual = actual.after;
+        ArrayList<String> names = new ArrayList<>();
+        
+        if(isEmpty()){
+            return names;
+        }
+        Nodo actual = cabeza;
+        if(actual.after != null && actual.before != null){
+            do{
+                names.add(actual.valor);
+                actual = actual.after;
+            }while(actual != cabeza);
+            return names;
         }
         return names;
+        
+        
         
     }
     
