@@ -2,13 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package com.software.arraynodosimples;
+package com.software.ListaDoblementeEnlazadasCircular;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
