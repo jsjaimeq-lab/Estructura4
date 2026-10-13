@@ -13,6 +13,7 @@ import javax.swing.JOptionPane;
 public class ListasEnlazadas {
 
     Nodo cabeza = null;
+    Nodo cola = null;
     
     
     public void addFirts(int age,String name){
@@ -21,13 +22,14 @@ public class ListasEnlazadas {
         
         if(cabeza == null){
             cabeza = nuevo;
+            cola = cabeza;
             return;
         }
         
         nuevo.setAfter(cabeza);
+        cola.setAfter(nuevo);
         cabeza = nuevo;
-        
-        
+       
     }
     
     public void addLast(int age,String name){
@@ -40,10 +42,7 @@ public class ListasEnlazadas {
             cabeza = nuevo;
             return;
         }
-        while(temporal.getAfter() != null){
-            temporal = temporal.getAfter();
-        }
-        temporal.setAfter(nuevo);
+        
        
         
     }
@@ -92,10 +91,10 @@ public class ListasEnlazadas {
             JOptionPane.showMessageDialog(null,"vacia");
             
         }else{
-            while(temporal != null){
+            do{
                 JOptionPane.showMessageDialog(null, temporal.getName());
-                temporal = temporal.getAfter();
-            }
+                temporal = temporal.getAfter(); 
+            }while(temporal != cabeza);
             
         }
     }

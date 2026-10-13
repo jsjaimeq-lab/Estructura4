@@ -10,4 +10,5 @@
         <maven.compiler.release>26</maven.compiler.release>
         <exec.mainClass>com.software.listasenlazadas.ListasEnlazadas</exec.mainClass>
     </properties>
+    <name>ListasEnlazadasCircularSimple</name>
 </project>
